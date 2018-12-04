@@ -25,13 +25,24 @@
         android:textColor="#000"/>
 
         <TextView
-            android:id="@+id/descricao_drink"
+            android:id="@+id/categoria_drink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Descricao"
+            android:text="Categoria"
             android:paddingLeft="16dp"
             android:textSize="20sp"
             android:textColor="#808080 "/>
+
+        <TextView
+            android:id="@+id/tipo_drink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo"
+            android:paddingLeft="16dp"
+            android:textSize="20sp"
+            android:textColor="#808080 "/>
+
+
 
     </LinearLayout>
 
