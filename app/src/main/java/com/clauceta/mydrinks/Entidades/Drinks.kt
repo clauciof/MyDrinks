@@ -1,4 +1,4 @@
-package com.clauceta.mydrinks
+package com.clauceta.mydrinks.Entidades
 
 import java.io.Serializable
 

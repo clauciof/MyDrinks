@@ -1,10 +1,12 @@
-package com.clauceta.mydrinks
+package com.clauceta.mydrinks.Main
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.clauceta.mydrinks.Entidades.Drinks
+import com.clauceta.mydrinks.R
 import kotlinx.android.synthetic.main.main_recyclerview_item.view.*
 
 class MainAdapter(val context: Context, val drink: List<Drinks>) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
