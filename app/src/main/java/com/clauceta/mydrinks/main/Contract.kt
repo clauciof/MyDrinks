@@ -13,7 +13,7 @@ interface Contract {
     }
 
     interface Presenter{
-        fun onLoadList()
+        fun onLoadList(opcao: Int)
     }
 
 }

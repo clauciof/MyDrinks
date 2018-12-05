@@ -12,25 +12,49 @@ import javax.security.auth.callback.Callback
 
 class MainPresenter(val view: Contract.View): Contract.Presenter{
 
-       override fun onLoadList(){                 /* Faz a integracao com a api e recebe a lista*/
+       override fun onLoadList(opcao: Int){/* Faz a integracao com a api e recebe a lista*/
 
-                val novoServico = RetrofitInicializer().createNovoServico()
 
-                val call = novoServico.getAlcoholicDrinks()
+           if(opcao==0){
+               val novoServico = RetrofitInicializer().createNovoServico()
 
-                call.enqueue(object: retrofit2.Callback<ListaDeDrinks>{
-                    override fun onResponse(call: Call<ListaDeDrinks>, response: Response<ListaDeDrinks>) {
-                            if(response.body() != null){
-                                view.exibeLista(response.body()!!.drinks)
-                            }else{
-                                view.showMessage("Sem drinks para mostrar")
-                            }
-                    }
+               val call = novoServico.getAlcoholicDrinks()
 
-                    override fun onFailure(call: Call<ListaDeDrinks>, t: Throwable) {
-                        view.showMessage("Falha na conexao")
-                    }
-                })
+               call.enqueue(object: retrofit2.Callback<ListaDeDrinks>{
+                   override fun onResponse(call: Call<ListaDeDrinks>, response: Response<ListaDeDrinks>) {
+                       if(response.body() != null){
+                           view.exibeLista(response.body()!!.drinks)
+                       }else{
+                           view.showMessage("Sem drinks para mostrar")
+                       }
+                   }
+
+                   override fun onFailure(call: Call<ListaDeDrinks>, t: Throwable) {
+                       view.showMessage("Falha na conexao")
+                   }
+               })
+           }else{
+
+               val novoServico = RetrofitInicializer().createNovoServico()
+
+               val call = novoServico.getRandomDrinks()
+
+               call.enqueue(object: retrofit2.Callback<ListaDeDrinks>{
+                   override fun onResponse(call: Call<ListaDeDrinks>, response: Response<ListaDeDrinks>) {
+                       if(response.body() != null){
+                           view.exibeLista(response.body()!!.drinks)
+                       }else{
+                           view.showMessage("Sem drinks para mostrar")
+                       }
+                   }
+
+                   override fun onFailure(call: Call<ListaDeDrinks>, t: Throwable) {
+                       view.showMessage("Falha na conexao")
+                   }
+               })
+           }
+
+
         }
 
 

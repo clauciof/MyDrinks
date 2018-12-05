@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.MainActivity">
+    tools:context=".main.MainActivity"
+    android:orientation="vertical">
 
   <android.support.v7.widget.RecyclerView
 
@@ -15,4 +16,36 @@
 
   </android.support.v7.widget.RecyclerView>
 
-</android.support.constraint.ConstraintLayout>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:gravity="center"
+      android:layout_gravity="bottom">
+
+    <Button
+        android:id="@+id/btn_drinks_alcolicos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drinks Alcoolicos"
+        android:textSize="10sp"
+        android:backgroundTint="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/btn_drinks_aleatorios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drinks Aleatorio"
+        android:textSize="10sp"
+        android:backgroundTint="@color/colorAccent"/>
+    <Button
+        android:id="@+id/btn_drinks_salvos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drinks Salvos"
+        android:textSize="10sp"
+        android:backgroundTint="@color/colorAccent"/>
+
+  </LinearLayout>
+
+</FrameLayout>
