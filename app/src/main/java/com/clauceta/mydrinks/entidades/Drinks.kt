@@ -1,5 +1,7 @@
 package com.clauceta.mydrinks.entidades
 
+import java.io.Serializable
+
 
 data class Drinks(
         var idDrink: String = "", // por exemplo "13060",
@@ -30,7 +32,7 @@ data class Drinks(
         var strMeasure8: String = "",
         var strMeasure9: String = "",
         var strMeasure10: String = ""
-)
+): Serializable
 
 
 

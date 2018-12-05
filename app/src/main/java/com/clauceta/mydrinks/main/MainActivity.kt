@@ -11,7 +11,7 @@ import com.clauceta.mydrinks.entidades.Drinks
 import com.clauceta.mydrinks.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), Contract.View {
+class MainActivity : AppCompatActivity(), Contract.View, MainListFragment.onFragmentInteractionListener {
 
     /*var drink1 = Drinks("sex on the beach", "azul")
     var drink2 = Drinks("caipirinha", "so o alcool etilico")*/
@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity(), Contract.View {
 
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fmMaster, fragmentNewList)
+                .addToBackStack(null)
                 .commit()
 
 
@@ -57,6 +58,15 @@ class MainActivity : AppCompatActivity(), Contract.View {
 
     override fun showMessage(s: String) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onFragmentInteraction(drink: Drinks) {
+
+        val fragmentDetalhe = DetalhesFragment.newInstance(drink)
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fmMaster, fragmentDetalhe)
+                .commit()
     }
 
 }

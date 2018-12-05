@@ -1,6 +1,7 @@
 package com.clauceta.mydrinks.main
 
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
@@ -23,10 +24,9 @@ class MainListFragment : Fragment() {
                     putSerializable(CHAVE_ARG, lista)
                 }
             }
-
-
-
     }
+
+    var listener: onFragmentInteractionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -40,20 +40,18 @@ class MainListFragment : Fragment() {
 
         val listaDeDrinks = getDrinksList()
 
-
         activity?.let{that->
 
             val adapter = MainAdapter(that, listaDeDrinks)
-            val layoutManager = LinearLayoutManager(that)
+           // val layoutManager = LinearLayoutManager(that)
+            adapter.listenerClique { position ->
+                listener?.onFragmentInteraction(listaDeDrinks[position])
+            }
 
             main_recyclerview.adapter = adapter
             main_recyclerview.layoutManager = LinearLayoutManager(that)
 
-            adapter.listenerClique { indexNotinhaClicada ->
-                /*val editanotinha = Intent(this, CadastraNotinhasActivity::class.java)
-                editanotinha.putExtra(CadastraNotinhasActivity.REQUEST_NOTINHA, lista_de_itens.get(indexNotinhaClicada)) //manda um tipo notinha para a prox intent (Activity)
-                startActivity(editanotinha)*/
-            }
+
         }
 
     }
@@ -66,6 +64,26 @@ class MainListFragment : Fragment() {
 
             return drinks
         }
+
+        interface onFragmentInteractionListener{
+            fun onFragmentInteraction(lista: Drinks)
+        }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        if(context is MainListFragment.onFragmentInteractionListener){
+            listener = context
+        }else{
+            throw RuntimeException(context.toString())
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+
+        listener = null
+    }
 
 
 }
