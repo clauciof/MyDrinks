@@ -45,21 +45,12 @@ class MainActivity : AppCompatActivity(), Contract.View {
 
     override fun exibeLista(listaDeDrinks: List<Drinks>){
 
+        val fragmentNewList = MainListFragment.newInstance(listaDeDrinks as ArrayList<Drinks> )
 
-        var adapter = MainAdapter(this, listaDeDrinks)
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fmMaster, fragmentNewList)
+                .commit()
 
-        val layoutManager = LinearLayoutManager(this)
-        val dividerItemDecoration = DividerItemDecoration(this, layoutManager.orientation)
-        main_recyclerview.adapter = adapter
-        main_recyclerview.layoutManager = layoutManager
-        main_recyclerview.addItemDecoration(dividerItemDecoration)
-
-
-        adapter.listenerClique { indexNotinhaClicada ->
-            //val editanotinha = Intent(this, CadastraNotinhasActivity::class.java)
-            /*editanotinha.putExtra(CadastraNotinhasActivity.REQUEST_NOTINHA, lista_de_itens.get(indexNotinhaClicada)) //manda um tipo notinha para a prox intent (Activity)
-            startActivity(editanotinha)*/
-        }
 
 
     }

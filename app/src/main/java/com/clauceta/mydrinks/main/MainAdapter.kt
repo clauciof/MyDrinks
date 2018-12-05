@@ -48,9 +48,8 @@ class MainAdapter(val context: Context, val drink: List<Drinks>) : RecyclerView.
             itemView.categoria_drink.text = drink.strCategory
             itemView.tipo_drink.text = drink.strAlcoholic
 
-            GlideApp.with(context)
+           GlideApp.with(context)
                     .load(drink.strDrinkThumb)
-                    //.placeholder(R.drawable.)
                     .centerCrop()
                     .into(itemView.img_drink)
 
